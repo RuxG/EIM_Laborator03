@@ -12,9 +12,9 @@
         android:orientation="horizontal">
 
         <EditText
-            android:layout_height="wrap_content"
+            android:id="@+id/phoneNumber"
             android:layout_width="match_parent"
-            />
+            android:layout_height="wrap_content" />
 
 
     </LinearLayout>
@@ -27,6 +27,7 @@
 
         <ImageButton
 
+            android:id="@+id/backSpace"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
@@ -45,53 +46,64 @@
         >
 
         <Button
+            android:id="@+id/_1"
             android:text="1"
-            android:textAlignment="center">
-        </Button>
+            android:textAlignment="center"></Button>
+
         <Button
+            android:id="@+id/_2"
             android:text="2"
-            android:textAlignment="center">
-        </Button>
+            android:textAlignment="center"></Button>
+
         <Button
+            android:id="@+id/_3"
             android:text="3"
-            android:textAlignment="center">
-        </Button>
+            android:textAlignment="center"></Button>
+
         <Button
+            android:id="@+id/_4"
             android:text="4"
-            android:textAlignment="center">
-        </Button>
+            android:textAlignment="center"></Button>
+
         <Button
+            android:id="@+id/_5"
             android:text="5"
-            android:textAlignment="center">
-        </Button>
+            android:textAlignment="center"></Button>
+
         <Button
+            android:id="@+id/_6"
             android:text="6"
-            android:textAlignment="center">
-        </Button>
+            android:textAlignment="center"></Button>
+
         <Button
+            android:id="@+id/_7"
             android:text="7"
-            android:textAlignment="center">
-        </Button>
+            android:textAlignment="center"></Button>
+
         <Button
+            android:id="@+id/_8"
             android:text="8"
-            android:textAlignment="center">
-        </Button>
+            android:textAlignment="center"></Button>
+
         <Button
+            android:id="@+id/_9"
             android:text="9"
-            android:textAlignment="center">
-        </Button>
+            android:textAlignment="center"></Button>
+
         <Button
+            android:id="@+id/_asterix"
             android:text="*"
-            android:textAlignment="center">
-        </Button>
+            android:textAlignment="center"></Button>
+
         <Button
+            android:id="@+id/_0"
             android:text="0"
-            android:textAlignment="center">
-        </Button>
+            android:textAlignment="center"></Button>
+
         <Button
+            android:id="@+id/_diez"
             android:text="#"
-            android:textAlignment="center">
-        </Button>
+            android:textAlignment="center"></Button>
     </GridLayout>
 
     <LinearLayout
@@ -100,19 +112,20 @@
         android:orientation="horizontal">
 
         <ImageButton
+            android:id="@+id/acceptCall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_call"
             android:layout_marginLeft="60dp"
-            ></ImageButton>
+            android:src="@drawable/ic_call"></ImageButton>
 
         <ImageButton
+            android:id="@+id/hangUpCall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_hangup"
-            android:layout_marginLeft="140dp"
+            android:layout_gravity="center_vertical"
 
-            android:layout_gravity="center_vertical"></ImageButton>
+            android:layout_marginLeft="140dp"
+            android:src="@drawable/ic_hangup"></ImageButton>
     </LinearLayout>
 
 

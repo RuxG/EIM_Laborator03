@@ -48,7 +48,7 @@
         <Button
             android:id="@+id/_1"
             android:text="1"
-            android:textAlignment="center"></Button>
+            android:textAlignment="center" />
 
         <Button
             android:id="@+id/_2"

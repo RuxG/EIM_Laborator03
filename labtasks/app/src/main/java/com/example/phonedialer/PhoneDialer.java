@@ -1,104 +1,136 @@
 package com.example.phonedialer;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
-import android.media.Image;
+import android.Manifest;
+import android.content.Intent;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class PhoneDialer extends AppCompatActivity {
 
-    List<Button> keys;
     EditText phoneNumber;
-    ImageButton backSpace;
+    HashMap<Integer, String> buttonsIdMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_phone_dialer);
-
+        setContentView(R.layout.layout_land);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        
         phoneNumber = (EditText) findViewById(R.id.phoneNumber);
         phoneNumber.setText("");
+        phoneNumber.setEnabled(false);
 
-        backSpace = (ImageButton) findViewById(R.id.backSpace);
-        backSpace.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        ButtonsListener buttonsListener = new ButtonsListener();
+        initKeys(buttonsListener);
+
+    }
+
+
+    private class ButtonsListener implements View.OnClickListener {
+
+        @Override
+        public void onClick(View view) {
+            if (buttonsIdMap.get(view.getId()).compareTo(Constants.BUTTON_TYPE_DIAL) == 0) {
+                phoneNumber.setText(phoneNumber.getText().toString().concat(((Button) view).getText().toString()));
+            } else if (buttonsIdMap.get(view.getId()).compareTo(Constants.BUTTON_TYPE_ACCEPT_CALL) == 0) {
+                if (PackageManager.PERMISSION_GRANTED != ContextCompat.checkSelfPermission(PhoneDialer.this, Manifest.permission.CALL_PHONE)) {
+                    ActivityCompat.requestPermissions(
+                            PhoneDialer.this,
+                            new String[]{Manifest.permission.CALL_PHONE},
+                            0);
+                } else {
+                    Intent intent = new Intent(Intent.ACTION_CALL);
+                    intent.setData(Uri.parse("tel:" + phoneNumber.getText().toString()));
+                    startActivity(intent);
+                }
+            } else if (buttonsIdMap.get(view.getId()).compareTo(Constants.BUTTON_TYPE_HANGUP_CALL) == 0) {
+                finish();
+            } else if (buttonsIdMap.get(view.getId()).compareTo(Constants.BUTTON_TYPE_BACKSPACE) == 0) {
                 String phoneNumberStr = phoneNumber.getText().toString();
                 if (phoneNumberStr.length() > 0) {
                     phoneNumber.setText(phoneNumberStr.substring(0, phoneNumberStr.length() - 1));
                 }
             }
-        });
-
-        View.OnClickListener listener = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                phoneNumber.setText(phoneNumber.getText().toString().concat(((Button) view).getText().toString()));
-            }
-        };
-
-        keys = new ArrayList<>();
-        initKeys(listener);
-
-
+        }
     }
 
-    private void initKeys(View.OnClickListener listener) {
+    private void initKeys(View.OnClickListener buttonsListener) {
 
-        Button key_0 = findViewById(R.id._0);
-        key_0.setOnClickListener(listener);
-        keys.add(key_0);
+        buttonsIdMap = new HashMap<>();
+        View view;
 
-        Button key_1 = findViewById(R.id._1);
-        key_1.setOnClickListener(listener);
-        keys.add(key_1);
+        view = (ImageButton) findViewById(R.id.backSpace);
+        view.setOnClickListener(buttonsListener);
+        buttonsIdMap.put(view.getId(), Constants.BUTTON_TYPE_BACKSPACE);
 
-        Button key_2 = findViewById(R.id._2);
-        key_2.setOnClickListener(listener);
-        keys.add(key_2);
+        view = (View)findViewById(R.id._0);
+        view.setOnClickListener(buttonsListener);
+        buttonsIdMap.put(view.getId(), Constants.BUTTON_TYPE_DIAL);
 
-        Button key_3 = findViewById(R.id._3);
-        key_3.setOnClickListener(listener);
-        keys.add(key_3);
+        view = (View)findViewById(R.id._1);
+        view.setOnClickListener(buttonsListener);
+        buttonsIdMap.put(view.getId(), Constants.BUTTON_TYPE_DIAL);
 
-        Button key_4 = findViewById(R.id._4);
-        key_4.setOnClickListener(listener);
-        keys.add(key_4);
+        view = (View)findViewById(R.id._2);
+        view.setOnClickListener(buttonsListener);
+        buttonsIdMap.put(view.getId(), Constants.BUTTON_TYPE_DIAL);
 
-        Button key_5 = findViewById(R.id._5);
-        key_5.setOnClickListener(listener);
-        keys.add(key_5);
+        view = (View)findViewById(R.id._3);
+        view.setOnClickListener(buttonsListener);
+        buttonsIdMap.put(view.getId(), Constants.BUTTON_TYPE_DIAL);
 
-        Button key_6 = findViewById(R.id._6);
-        key_6.setOnClickListener(listener);
-        keys.add(key_6);
+        view = (View)findViewById(R.id._4);
+        view.setOnClickListener(buttonsListener);
+        buttonsIdMap.put(view.getId(), Constants.BUTTON_TYPE_DIAL);
 
-        Button key_7 = findViewById(R.id._7);
-        key_7.setOnClickListener(listener);
-        keys.add(key_7);
+        view = (View)findViewById(R.id._5);
+        view.setOnClickListener(buttonsListener);
+        buttonsIdMap.put(view.getId(), Constants.BUTTON_TYPE_DIAL);
 
-        Button key_8 = findViewById(R.id._8);
-        key_8.setOnClickListener(listener);
-        keys.add(key_8);
+        view = (View)findViewById(R.id._6);
+        view.setOnClickListener(buttonsListener);
+        buttonsIdMap.put(view.getId(), Constants.BUTTON_TYPE_DIAL);
 
-        Button key_9 = findViewById(R.id._9);
-        key_9.setOnClickListener(listener);
-        keys.add(key_9);
+        view = (View)findViewById(R.id._7);
+        view.setOnClickListener(buttonsListener);
+        buttonsIdMap.put(view.getId(), Constants.BUTTON_TYPE_DIAL);
 
-        Button key_asterix = findViewById(R.id._asterix);
-        key_asterix.setOnClickListener(listener);
-        keys.add(key_asterix);
+        view = (View)findViewById(R.id._8);
+        view.setOnClickListener(buttonsListener);
+        buttonsIdMap.put(view.getId(), Constants.BUTTON_TYPE_DIAL);
 
-        Button key_diez = findViewById(R.id._diez);
-        key_diez.setOnClickListener(listener);
-        keys.add(key_diez);
+        view = (View)findViewById(R.id._9);
+        view.setOnClickListener(buttonsListener);
+        buttonsIdMap.put(view.getId(), Constants.BUTTON_TYPE_DIAL);
+
+        view = (View)findViewById(R.id._asterix);
+        view.setOnClickListener(buttonsListener);
+        buttonsIdMap.put(view.getId(), Constants.BUTTON_TYPE_DIAL);
+
+        view = (View)findViewById(R.id._diez);
+        view.setOnClickListener(buttonsListener);
+        buttonsIdMap.put(view.getId(), Constants.BUTTON_TYPE_DIAL);
+
+        view = (View)findViewById(R.id.acceptCall);
+        view.setOnClickListener(buttonsListener);
+        buttonsIdMap.put(view.getId(), Constants.BUTTON_TYPE_ACCEPT_CALL);
+
+        view = (View)findViewById(R.id.hangUpCall);
+        view.setOnClickListener(buttonsListener);
+        buttonsIdMap.put(view.getId(), Constants.BUTTON_TYPE_HANGUP_CALL);
+
     }
 }

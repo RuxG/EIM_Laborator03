@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/phoneNumber"
+            />
+        
+    </LinearLayout>
+    
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:rowCount="3"
+        android:columnCount="5"
+        android:layout_gravity="center"
+        android:useDefaultMargins="true">
+
+        <Button
+            android:id="@+id/_1"
+            android:text="1"
+            android:textAlignment="center" />
+
+        <Button
+            android:id="@+id/_2"
+            android:text="2"
+            android:textAlignment="center"></Button>
+
+        <Button
+            android:id="@+id/_3"
+            android:text="3"
+            android:textAlignment="center"></Button>
+
+        <Button
+            android:id="@+id/_4"
+            android:text="4"
+            android:textAlignment="center"></Button>
+
+        <Button
+            android:id="@+id/_5"
+            android:text="5"
+            android:textAlignment="center"></Button>
+
+        <Button
+            android:id="@+id/_6"
+            android:text="6"
+            android:textAlignment="center"></Button>
+
+        <Button
+            android:id="@+id/_7"
+            android:text="7"
+            android:textAlignment="center"></Button>
+
+        <Button
+            android:id="@+id/_8"
+            android:text="8"
+            android:textAlignment="center"></Button>
+
+        <Button
+            android:id="@+id/_9"
+            android:text="9"
+            android:textAlignment="center"></Button>
+
+        <Button
+            android:id="@+id/_0"
+            android:text="0"
+            android:textAlignment="center"></Button>
+
+        <ImageButton
+            android:id="@+id/acceptCall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_call"></ImageButton>
+
+        <Button
+            android:id="@+id/_asterix"
+            android:text="*"
+            android:textAlignment="center"></Button>
+
+        <ImageButton
+
+            android:id="@+id/backSpace"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_backspace"></ImageButton>
+
+        <Button
+            android:id="@+id/_diez"
+            android:text="#"
+            android:textAlignment="center"></Button>
+
+        <ImageButton
+            android:id="@+id/hangUpCall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/ic_hangup" />
+    </GridLayout>
+
+</LinearLayout>
